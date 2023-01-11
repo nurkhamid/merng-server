@@ -12,7 +12,11 @@ const PORT = process.env.PORT || 5000;
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({ req, pubsub }) 
+    context: ({ req }) => ({ req, pubsub }),
+    cors: {
+        origin: "*", // <- allow request from all domains
+        credentials: true,  // <- enable CORS response for requests with credentials (cookies, http authentication)
+      },
 });
 
 mongoose
